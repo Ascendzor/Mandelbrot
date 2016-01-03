@@ -4,14 +4,10 @@ var width = 800;
 var height = 600;
 context.canvas.width = width
 context.canvas.height = height
-var imageData = context.createImageData(1, 1)
-var pixelData = imageData.data
-pixelData[0] = 0
-pixelData[1] = 0
-pixelData[2] = 0
-pixelData[3] = 255
 
 var drawMandlebrot = function(maxIterations) {
+  pixelIndex = 0
+  var imageData = context.createImageData(width, height)
   for (row=0; row < height; row++) {
     for (col=0; col < width; col++) {
       var cre = (col - width/2) * 4 / width;
@@ -25,9 +21,19 @@ var drawMandlebrot = function(maxIterations) {
         x = xnew;
         iteration++;
       }
-      if (iteration >= maxIterations) context.putImageData(imageData, row, col)
+      var pixelData = imageData.data
+      pixelData[0] = iteration /2
+      pixelData[1] = iteration /2
+      pixelData[2] = iteration /2
+      pixelData[3] = 128
+      imageData.data[pixelIndex++] = (maxIterations - iteration) * 2
+      imageData.data[pixelIndex++] = (maxIterations - iteration) * 4
+      imageData.data[pixelIndex++] = (maxIterations - iteration) * 7
+      imageData.data[pixelIndex++] = 255
     }
   }
+  console.log(imageData.data.length)
+  context.putImageData(imageData, 0, 0)
 }
 
 button = document.getElementsByClassName('buttonHandle')[0]
