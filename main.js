@@ -28,6 +28,9 @@ var drawMandlebrot = function(maxIterations) {
       pixelData[2] = iteration /2
       pixelData[3] = 128
       colours = getColour(iteration)
+      if(iteration == maxIterations) {
+        colours = [0, 0, 0]
+      }
       imageData.data[pixelIndex++] = colours[0]
       imageData.data[pixelIndex++] = colours[1]
       imageData.data[pixelIndex++] = colours[2]
