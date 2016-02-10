@@ -2,6 +2,8 @@ var canvas = document.getElementsByClassName('canvasHandle')[0]
 var context = canvas.getContext('2d')
 var width = 800;
 var height = 600;
+var xScale = 1;
+var yScale = 1;
 context.canvas.width = width
 context.canvas.height = height
 getColour = require('./getColour')
@@ -11,8 +13,8 @@ var drawMandlebrot = function(maxIterations) {
   var imageData = context.createImageData(width, height)
   for (row=0; row < height; row++) {
     for (col=0; col < width; col++) {
-      var cre = (col - width/2) * 4 / width;
-      var cim = (row - height/2) * 4 / width;
+      var cre = (col - width/2) * 4 / width * xScale;
+      var cim = (row - height/2) * 4 / width * yScale;
       var x = 0;
       var y = 0;
       var iteration = 0;
@@ -51,6 +53,13 @@ button.onclick = function() {
   context.canvas.height = height
   context.clearRect(0, 0, width, height)
   drawMandlebrot(input.value)
+}
+
+canvas.ondblclick = function (e){
+  percentageRight = e.pageX / width
+  percentageDown = e.pageY / height
+  console.log(percentageRight)
+  console.log(percentageDown)
 }
 
 button.click()
