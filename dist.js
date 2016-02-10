@@ -1,3 +1,26 @@
+(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+mapping = []
+mapping[0]=[66, 30, 15]
+mapping[1]=[25, 7, 26]
+mapping[2]=[9, 1, 47]
+mapping[3]=[4, 4, 73]
+mapping[4]=[0, 7, 100]
+mapping[5]=[12, 44, 138]
+mapping[6]=[24, 82, 177]
+mapping[7]=[57, 125, 209]
+mapping[8]=[134, 181, 229]
+mapping[9]=[211, 236, 248]
+mapping[10]=[241, 233, 191]
+mapping[11]=[248, 201, 95]
+mapping[12]=[255, 170, 0]
+mapping[13]=[204, 128, 0]
+mapping[14]=[153, 87, 0]
+mapping[15]=[106, 52, 3]
+module.exports = function(i) {
+  return mapping[i % 16];
+}
+
+},{}],2:[function(require,module,exports){
 var canvas = document.getElementsByClassName('canvasHandle')[0]
 var context = canvas.getContext('2d')
 var width = 800;
@@ -51,3 +74,5 @@ button.onclick = function() {
 }
 
 button.click()
+
+},{"./getColour":1}]},{},[2]);

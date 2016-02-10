@@ -1,0 +1,20 @@
+mapping = []
+mapping[0]=[66, 30, 15]
+mapping[1]=[25, 7, 26]
+mapping[2]=[9, 1, 47]
+mapping[3]=[4, 4, 73]
+mapping[4]=[0, 7, 100]
+mapping[5]=[12, 44, 138]
+mapping[6]=[24, 82, 177]
+mapping[7]=[57, 125, 209]
+mapping[8]=[134, 181, 229]
+mapping[9]=[211, 236, 248]
+mapping[10]=[241, 233, 191]
+mapping[11]=[248, 201, 95]
+mapping[12]=[255, 170, 0]
+mapping[13]=[204, 128, 0]
+mapping[14]=[153, 87, 0]
+mapping[15]=[106, 52, 3]
+module.exports = function(i) {
+  return mapping[i % 16];
+}
