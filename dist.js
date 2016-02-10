@@ -27,6 +27,8 @@ var width = 800;
 var height = 600;
 var xScale = 1;
 var yScale = 1;
+var panX = 1;
+var panY = 1;
 context.canvas.width = width
 context.canvas.height = height
 getColour = require('./getColour')
@@ -36,8 +38,8 @@ var drawMandlebrot = function(maxIterations) {
   var imageData = context.createImageData(width, height)
   for (row=0; row < height; row++) {
     for (col=0; col < width; col++) {
-      var cre = (col - width/2) * 4 / width * xScale;
-      var cim = (row - height/2) * 4 / width * yScale;
+      var cre = (col - width/2 * panX) * 4 / width * xScale;
+      var cim = (row - height/2 * panY) * 4 / width * yScale;
       var x = 0;
       var y = 0;
       var iteration = 0;
@@ -62,7 +64,6 @@ var drawMandlebrot = function(maxIterations) {
       imageData.data[pixelIndex++] = 255
     }
   }
-  console.log(imageData.data.length)
   context.putImageData(imageData, 0, 0)
 }
 
@@ -79,10 +80,11 @@ button.onclick = function() {
 }
 
 canvas.ondblclick = function (e){
-  percentageRight = e.pageX / width
-  percentageDown = e.pageY / height
-  console.log(percentageRight)
-  console.log(percentageDown)
+  percentageRight = e.pageX / width;
+  percentageDown = e.pageY / height;
+  console.log('percentage right: ' + percentageRight);
+  console.log('percentage down: ' + percentageDown);
+  button.click();
 }
 
 button.click()
