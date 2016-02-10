@@ -59,6 +59,8 @@ button.onclick = function() {
 canvas.ondblclick = function (e){
   percentageRight = e.pageX / width;
   percentageDown = e.pageY / height;
+  panX = panX + (0.5 - percentageRight)*2;
+  panY = panY + (0.5 - percentageDown)*2;
   console.log('percentage right: ' + percentageRight);
   console.log('percentage down: ' + percentageDown);
   button.click();
