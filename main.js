@@ -2,8 +2,7 @@ var canvas = document.getElementsByClassName('canvasHandle')[0]
 var context = canvas.getContext('2d')
 var width = 800;
 var height = 600;
-var xScale = 1;
-var yScale = 1;
+var scale = 1;
 var panX = 0.5;
 var panY = 0.5;
 context.canvas.width = width
@@ -15,8 +14,8 @@ var drawMandlebrot = function(maxIterations) {
   var imageData = context.createImageData(width, height)
   for (row=0; row < height; row++) {
     for (col=0; col < width; col++) {
-      var cre = (col - width * panX) * 4 / width * xScale;
-      var cim = (row - height * panY) * 4 / width * yScale;
+      var cre = (col - width * panX) * 4 / width / scale;
+      var cim = (row - height * panY) * 4 / width / scale;
       var x = 0;
       var y = 0;
       var iteration = 0;
@@ -54,6 +53,10 @@ button.onclick = function() {
   context.canvas.height = height
   context.clearRect(0, 0, width, height)
   drawMandlebrot(input.value)
+
+  prettyPanString = 'x: ' + Math.round(panX*10) / 10 + ' - y: ' + Math.round(panY * 10) / 10
+  document.getElementsByClassName('currentPan')[0].innerHTML = prettyPanString
+  document.getElementsByClassName('currentZoom')[0].innerHTML = scale
 }
 
 canvas.ondblclick = function (e){
@@ -64,10 +67,7 @@ canvas.ondblclick = function (e){
   button.click();
 }
 window.oncontextmenu = function(e){
-  console.log(panX)
-  console.log(panY)
-  xScale *= 0.7
-  yScale *= 0.7
+  scale *= 1.3
   button.click();
   return false;
 }
